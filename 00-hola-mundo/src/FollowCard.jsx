@@ -1,5 +1,5 @@
 
-export function FollowCard({ name, userName, isFollow }) {
+export function FollowCard({ atUserName, name, userName, isFollow }) {
     const imgSource = `https://unavatar.io/${userName}`
     const imgAlt = `${userName} image`
     return (
@@ -9,7 +9,7 @@ export function FollowCard({ name, userName, isFollow }) {
                     alt={imgAlt} />
                 <div className='tw-followCard-info'>
                     <strong>{name}</strong>
-                    <span className="tw-followCard-userName">{userName}</span>
+                    <span className="tw-followCard-userName">{atUserName(userName)}</span>
                 </div>
             </header>
             <button className="tw-followCard-button">
