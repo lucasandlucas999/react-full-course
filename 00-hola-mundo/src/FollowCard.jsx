@@ -1,40 +1,35 @@
-import { useState } from "react"
+import React, { useState } from 'react'
 
-export function FollowCard({userName, children}){
-
-    
-
+export function FollowCard({children, userName}){
     const imgSrc = `https://unavatar.io/${userName}`
-    
-    const [isFollowing, setIsFollowing] = useState(false)
-    const buttonText = isFollowing ? 'Siguiendo' : 'Seguir'
-    const buttonClassName = isFollowing 
-    ? 'tw-followCard-button is-following' 
-    : 'tw-followCard-button'
-
-    const handleClick = () => {
+    const imgAlt = `${userName} image`
+    const atUserName = `@${userName}`
+    const [isFollowing, setIsFollowing] = useState(false)   
+    const toggleFollow = () => {
         setIsFollowing(!isFollowing)
     }
-    const atUserName = (userName) => `@${userName}`
-    const imgAlt = `${atUserName} image`
+    const buttonText = isFollowing ? 'Siguiendo' : 'Seguir'
+    const buttonClassName = isFollowing ?
+    'tw-followCard-button is-following'
+    : 'tw-followCard-button'
     return(
         <article className="tw-followCard">
             <header className="tw-followCard-header">
-            <img className='tw-followCard-avatar' src={imgSrc} alt={imgAlt} />
+                <img className='tw-followCard-avatar' 
+                src={imgSrc} 
+                alt={imgAlt} />
                 <div className="tw-followCard-info">
                     <strong>
                         {children}
                     </strong>
                     <span className="tw-followCard-userName">
-                        {atUserName(userName)}
+                        {atUserName}
                     </span>
                 </div>
             </header>
-            <aside>
-                <button className={buttonClassName} onClick={handleClick}>
-                    {buttonText}
-                </button>
-            </aside>
+            <button className={buttonClassName} onClick={toggleFollow}>
+                {buttonText}
+            </button>
         </article>
     )
 }
