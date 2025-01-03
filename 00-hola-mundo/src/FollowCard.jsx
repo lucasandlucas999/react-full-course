@@ -1,5 +1,20 @@
-export function FollowCard({userName, children, isFollowing}){
+import { useState } from "react"
+
+export function FollowCard({userName, children}){
+
+    
+
     const imgSrc = `https://unavatar.io/${userName}`
+    
+    const [isFollowing, setIsFollowing] = useState(false)
+    const buttonText = isFollowing ? 'Siguiendo' : 'Seguir'
+    const buttonClassName = isFollowing 
+    ? 'tw-followCard-button is-following' 
+    : 'tw-followCard-button'
+
+    const handleClick = () => {
+        setIsFollowing(!isFollowing)
+    }
     const atUserName = (userName) => `@${userName}`
     const imgAlt = `${atUserName} image`
     return(
@@ -16,10 +31,8 @@ export function FollowCard({userName, children, isFollowing}){
                 </div>
             </header>
             <aside>
-                <button className="tw-followCard-button">
-                    {(isFollowing)
-                    ? 'Siguiendo'
-                    : 'Seguir'}
+                <button className={buttonClassName} onClick={handleClick}>
+                    {buttonText}
                 </button>
             </aside>
         </article>
